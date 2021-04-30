@@ -18,11 +18,18 @@ const titleClickHandler = function (event) {
 
   /* [DONE] remove class 'active' from all articles */
 
-  /* get 'href' attribute from the clicked link */
+  /* [DONE] get 'href' attribute from the clicked link */
 
-  /* find the correct article using the selector (value of 'href' attribute) */
+  const articleSelector = clickedElement.getAttribute("href");
+  console.log(articleSelector);
+
+  /* [ERROR] find the correct article using the selector (value of 'href' attribute) */
+
+  const targetArticle = document.querySelector("articleSelector");
+  console.log(targetArticle);
 
   /* add class 'active' to the correct article */
+  targetArticle.classList.add("active");
 };
 
 const links = document.querySelectorAll(".titles a");
