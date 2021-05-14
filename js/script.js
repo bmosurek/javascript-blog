@@ -42,8 +42,7 @@ const optTitleSelector = '.post-title';
 const optTitleListSelector = '.titles';
 //optArticleTagSelector = '.post-tags .list'; eslint returns error if saved it this way!!
 const optArticleTagSelector = '.post-tags .list';
-const optAuthorSelector = '.post-author';
-const optAuthorListSelector = '.authors ';
+const optAritcleAuthorSelector = '.post-author';
 
 // eslint-disable-next-line no-inner-declarations
 function generateTitleLinks(customSelector = '') {
@@ -160,7 +159,7 @@ addClickListenersToTags();
 function generateAuthors() {
   const articles = document.querySelectorAll(optArticleSelector);
   for (let article of articles) {
-    const authorWrapper = article.querySelector(optAuthorSelector);
+    const authorWrapper = article.querySelector(optAritcleAuthorSelector);
     const articleAuthor = article.getAttribute('data-author');
     authorWrapper.innerHTML = '<a href="#author-">' + articleAuthor + '</a>';
   }
@@ -170,6 +169,7 @@ generateAuthors();
 function authorClickHandler(event) {
   event.preventDefault();
   const clickedElement = this;
+  console.log('this', this);
   const href = clickedElement.getAttribute('href');
   console.log('href of clicked author', href);
   const author = href.replace('#author-', '');
