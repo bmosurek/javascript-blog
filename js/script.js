@@ -45,12 +45,15 @@ const optTitleListSelector = '.titles';
 const optArticleTagSelector = '.post-tags .list';
 
 // eslint-disable-next-line no-inner-declarations
-function generateTitleLinks() {
+function generateTitleLinks(customSelector = '') {
   //remove content of title list
   const titleList = document.querySelector(optTitleListSelector);
   titleList.innerHTML = '';
   //for each article
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(
+    optArticleSelector + customSelector
+  );
+  console.log('custom selector', customSelector);
   let html = '';
   for (let article of articles) {
     // get the article id
@@ -124,9 +127,9 @@ function tagClickHandler(event) {
   /* find all tag links with class active */
   const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   /* START LOOP: for each active tag link */
-  for (let activeTaglink of activeTagLinks) {
+  for (let activeTagLink of activeTagLinks) {
     /* remove class active */
-    activeTaglink.remove.classList('active');
+    activeTagLink.classList.remove('active');
   }
   /* END LOOP: for each active tag link */
 
@@ -147,8 +150,11 @@ function tagClickHandler(event) {
 // eslint-disable-next-line no-inner-declarations
 function addClickListenersToTags() {
   /* find all links to tags */
+  const tagLinks = document.querySelectorAll('a[href^="#tag-"]');
   /* START LOOP: for each link */
   /* add tagClickHandler as event listener for that link */
+  for (let tagLink of tagLinks)
+    tagLink.addEventListener('click', tagClickHandler);
   /* END LOOP: for each link */
 }
 addClickListenersToTags();
