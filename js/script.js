@@ -43,8 +43,8 @@ const optTitleListSelector = '.titles';
 //optArticleTagSelector = '.post-tags .list'; eslint returns error if saved it this way!!
 const optArticleTagSelector = '.post-tags .list';
 const optArticleAuthorSelector = '.post-author';
+const optTagsListSelector = '.tags.list';
 
-// eslint-disable-next-line no-inner-declarations
 function generateTitleLinks(customSelector = '') {
   //remove content of title list
   const titleList = document.querySelector(optTitleListSelector);
@@ -83,6 +83,8 @@ generateTitleLinks();
 
 // eslint-disable-next-line no-inner-declarations
 function generateTags() {
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article: */
@@ -98,16 +100,27 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      const tagHTML =
+      const linkHTML =
         '<li><a href ="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
       /* add generated code to html variable */
-      html = html + tagHTML;
+      html = html + linkHTML;
+      /* [NEW] check if this link is NOT already in allTags */
+      if (allTags.indexOf(linkHTML) == -1) {
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
       /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
   }
   /* END LOOP: for every article: */
+
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
 }
 generateTags();
 
