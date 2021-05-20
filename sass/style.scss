@@ -15,6 +15,33 @@ $font-text: 'Source Sans Pro', sans-serif;
   box-sizing: border-box;
 }
 
+
+.tag-size-1 {
+  font-size: 12px;
+  font-weight:200;
+  color: #3366FF;
+}
+.tag-size-2 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #0000FF;
+}
+.tag-size-3 {
+  font-size: 20px;
+  font-weight: 600;
+  color:#0000CC;
+}
+.tag-size-4 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #000099;
+}
+.tag-size-5 {
+  font-size: 28px;
+  font-weight:900;
+  color: #000066;
+}
+
 body {
   background: $color-light;
   font-family: $font-text;
@@ -96,6 +123,12 @@ body {
 .authors {
   li {
     margin-bottom: 12px;
+  }
+}
+
+.list.tags {
+  li {
+    display: inline;
   }
 }
 

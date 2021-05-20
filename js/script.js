@@ -44,6 +44,8 @@ const optTitleListSelector = '.titles';
 const optArticleTagSelector = '.post-tags .list';
 const optArticleAuthorSelector = '.post-author';
 const optTagsListSelector = '.tags.list';
+const optCloudClassCount = 5;
+const optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks(customSelector = '') {
   //remove content of title list
@@ -80,6 +82,15 @@ function generateTitleLinks(customSelector = '') {
 }
 
 generateTitleLinks();
+
+function calculateTagClass(count, params) {
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1);
+
+  return optCloudClassPrefix + classNumber;
+}
 
 // eslint-disable-next-line no-inner-declarations
 function generateTags() {
@@ -121,26 +132,47 @@ function generateTags() {
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags');
 
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
+
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
 
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
+
+    const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams);
+    console.log('tagLinkHTML:', tagLinkHTML);
+
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    console.log(tag);
     allTagsHTML +=
-      '<li><a href="#tag-' +
+      '<li><a class="' +
+      tagLinkHTML +
+      '" ' +
+      'href="#tag-' +
       tag +
       '"</a>' +
-      tag + ' (' + allTags[tag] + ')' +
-      '</li>';
-    console.log(allTagsHTML);
+      tag +
+      ' </li>';
   }
   /* [NEW] END LOOP: for each tag in allTags: */
 
   /*[NEW] add HTML from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
-  console.log(allTagsHTML);
+
+  function calculateTagsParams(tags) {
+    const params = {
+      max: 0,
+      min: 999999
+    };
+
+    for (let tag in tags) {
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      params.max = Math.max(tags[tag], params.max);
+      params.min = Math.min(tags[tag], params.min);
+    }
+    return params;
+  }
 }
 generateTags();
 
