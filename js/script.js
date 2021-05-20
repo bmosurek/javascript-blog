@@ -129,14 +129,11 @@ function generateTags() {
     /* [NEW] generate code of a link and add it to allTagsHTML */
     console.log(tag);
     allTagsHTML +=
-      '<li><a href="' +
+      '<li><a href="#tag-' +
       tag +
-      '</a>' +
-      tag +
-      '</li>' +
-      ' (' +
-      allTags[tag] +
-      ') ';
+      '"</a>' +
+      tag + ' (' + allTags[tag] + ')' +
+      '</li>';
     console.log(allTagsHTML);
   }
   /* [NEW] END LOOP: for each tag in allTags: */
