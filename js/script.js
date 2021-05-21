@@ -120,8 +120,8 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      const linkHTMLTagData = { id: tag };
-      const linkHTML = templates.articleLink(linkHTMLTagData);
+      const linkHTMLTagData = { tag };
+      const linkHTML = templates.tagLink(linkHTMLTagData);
       console.log(linkHTML);
       /* add generated code to html variable */
       html = html + linkHTML;
@@ -238,19 +238,28 @@ function generateAuthors() {
 
     if (!allAuthors[articleAuthor]) {
       allAuthors[articleAuthor] = 1;
-      authorWrapper.innerHTML =
-        '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a>';
-      const authorHTML =
-        '<li><a href="#author-' +
-        articleAuthor +
-        '">' +
-        articleAuthor +
-        '</a></li>';
-      html = html + authorHTML;
     } else {
       allAuthors[articleAuthor]++;
     }
+    authorWrapper.innerHTML =
+    '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a>';
   }
+  const obj = {
+    a: 1,
+    b: 2
+  }
+  Object.keys(allAuthors).forEach((author) => {
+    const authorHTML =
+    '<li><a href="#author-' +
+    author +
+    '">' +
+    author + 
+    allAuthors[author] +
+    '</a></li>';
+    html = html + authorHTML;
+  })
+
+
   console.log(allAuthors);
   authorList.innerHTML = html;
 }
