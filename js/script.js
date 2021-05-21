@@ -1,4 +1,17 @@
 'use strict';
+
+const templates = {
+  articleLink: Handlebars.compile(
+    document.querySelector('#template-article-link').innerHTML
+  ),
+  tagLink: Handlebars.compile(
+    document.querySelector('#template-tag-link').innerHTML
+  ),
+  //tagLink: Handlebars.compile(
+  //  document.querySelector('#template-tag-link').innerHTML
+  //),
+};
+
 const opt = {
   articleSelector: '.post',
   titleSelector: '.post-title',
@@ -63,12 +76,8 @@ function generateTitleLinks(customSelector = '') {
     //find title element + get the title from the title element
     const articleTitle = article.querySelector(opt.titleSelector).innerHTML;
     //create HTML of the link
-    const linkHTML =
-      '<li><a href ="#' +
-      articleId +
-      '"><span>' +
-      articleTitle +
-      '</span></a></li>';
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
     //insert link into html variable
     html = html + linkHTML;
   }
@@ -111,8 +120,9 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      const linkHTML =
-        '<li><a href ="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
+      const linkHTMLTagData = { id: tag };
+      const linkHTML = templates.articleLink(linkHTMLTagData);
+      console.log(linkHTML);
       /* add generated code to html variable */
       html = html + linkHTML;
       /* [NEW] check if this link is NOT already in allTags */
@@ -157,8 +167,6 @@ function generateTags() {
 
   /*[NEW] add HTML from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
-  console.log(allTagsHTML);
-
   function calculateTagsParams(tags) {
     const params = {
       max: 0,
