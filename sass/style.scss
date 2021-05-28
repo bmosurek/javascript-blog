@@ -1,35 +1,36 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext");
 
 /* Variables */
 
 $color-light: #fff;
 $color-dark: #444;
 
-$font-logo: 'Sacramento', cursive;
-$font-header: 'Oswald', sans-serif;
-$font-text: 'Source Sans Pro', sans-serif;
+$font-logo: "Sacramento", cursive;
+$font-header: "Oswald", sans-serif;
+$font-text: "Source Sans Pro", sans-serif;
 
 /* Global */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-
 .tag-size-1 {
   font-size: 12px;
-  font-weight:200;
-  color: #3366FF;
+  font-weight: 200;
+  color: #3366ff;
 }
 .tag-size-2 {
   font-size: 16px;
   font-weight: 400;
-  color: #0000FF;
+  color: #0000ff;
 }
 .tag-size-3 {
   font-size: 20px;
   font-weight: 600;
-  color:#0000CC;
+  color: #0000cc;
 }
 .tag-size-4 {
   font-size: 24px;
@@ -38,7 +39,7 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 .tag-size-5 {
   font-size: 28px;
-  font-weight:900;
+  font-weight: 900;
   color: #000066;
 }
 
@@ -83,7 +84,8 @@ body {
   flex: 2 0 0;
 }
 
-.sidebar, .posts {
+.sidebar,
+.posts {
   background: $color-light;
   margin-right: 10px;
   padding: 40px;
@@ -143,6 +145,7 @@ body {
 
 .post-author {
   font-style: italic;
+  list-style-type: none;
 }
 
 .post-tags {

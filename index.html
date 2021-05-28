@@ -430,28 +430,27 @@
     </div>
 
     <script id="template-article-link" type="text/x-handlebars-template">
-      <li><a href='#{{id}}'><span>{{title}}</span></a></li>
+      <li><a href="#{{id}}"><span>{{title}}</span></a></li>
     </script>
 
     <script id="template-tag-link" type="text/x-handlebars-template">
-      <li><a href='#tag-{{tag}}'><span>{{tag}}</span></a></li>
+      <li><a href="#tag-{{tag}}"><span>{{tag}}</span></a></li>
     </script>
 
     <script id="template-author-link" type="text/x-handlebars-template">
-      <li><a href='#author{{articleAuthor}}'><span
-          >{{articleAuthor}}</span></a></li>
+      <li><a href="#author-{{author}}"><span>{{author}}</span></a></li>
     </script>
 
     <script id="template-tag-cloud-link" type="text/x-handlebars-template">
       {{#each tags}}
-        <li><a href='#tag-{{tag}}' class='{{className}}'>{{tag}}</a></li>
+        <li><a href="#tag-{{tag}}" class="{{className}}">{{tag}}</a></li>
       {{/each}}
     </script>
 
     <script id="template-author-list-link" type="text/x-handlebars-template">
-      {{#each author}}
-        <li><a href='#author-{{articleAuthor}}'>{{articleAuthor}}
-            {{articleNumber}}</a></li>
+      {{#each authors}}
+        <li><a href="#author-{{author}}">{{author}}
+          </a>({{count}})</li>
       {{/each}}
     </script>
 
